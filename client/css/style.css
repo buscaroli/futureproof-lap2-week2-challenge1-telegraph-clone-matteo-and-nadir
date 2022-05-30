@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+}
+
+form {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  width: 100%;
+}
+
+::placeholder {
+  color: rgba(56, 41, 41, 0.582);
+}
+
+#title {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  font-size: 30px;
+  width: 100%;
+}
+
+#left {
+  width: 600px;
+}
+
+#name {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+}
+
+#story {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+}
+
+#publish {
+  padding: 3px 7px 3px 7px;
+  border-radius: 20px;
+  margin-top: 7px;
+}
+
+#publish:hover {
+  cursor: pointer;
+}
+
+.left {
+  width: 800px;
+}
