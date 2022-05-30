@@ -5,6 +5,6 @@ CREATE TABLE posts (
   title VARCHAR(10) NOT NULL,
   name VARCHAR(30) NOT NULL,
   story VARCHAR(2000) NOT NULL,
-  link VARCHAR(40) NOT NULL
+  link VARCHAR(40)
 
 );

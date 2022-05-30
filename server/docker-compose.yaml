@@ -1,4 +1,4 @@
-raphversion: '3'
+version: '3'
 services:
   server:
     image: node:12.18.4
@@ -9,7 +9,7 @@ services:
       - PGUSER=teluser
       - PGHOST=db
       - PGPASSWORD=telpass
-      - PGDATABASE=telegiraffe
+      - PGDATABASE=posts
       - PGPORT=5432
     depends_on:
       - db
@@ -25,7 +25,7 @@ services:
       - "dbdata:/var/lib/postgresql/data"
       - "./db:/docker-entrypoint-initdb.d/:ro"
     environment:
-      - POSTGRES_DB=telegiraffe
+      - POSTGRES_DB=posts
       - POSTGRES_USER=teluser
       - POSTGRES_PASSWORD=telpass
 volumes:
