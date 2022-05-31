@@ -5,18 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="static/app.js" />
+    
+    <script defer src="./static/index.js"></script>
+    <script defer src="./static/app.js"></script>
+    
     <title>Tele.grph</title>
   </head>
   <body>
     <form>
       <div class="left">
         <label for="title"></label>
-        <input type="text" id="title" placeholder="Title" /><br /><br />
-        <label for="yourName"></label>
-        <input type="text" id="name" placeholder="Your name" /><br /><br />
-        <label for="story"></label>
-        <input type="text" id="story" placeholder="Your story..." /><br /><br />
+        <input type="text" id="title" placeholder="Title" />
+        <div id="nameWrapper">
+        
+          <label for="yourName"></label>
+          <input type="text" id="name" placeholder="Your name" />
+
+          <div id="date">24 May 2020</div>
+        </div>
+        <div class="storyWrapper">
+          <label for="story"></label>
+          <input type="text" id="story" placeholder="Your story..." />
+        </div>
+        
+        
+        
       </div>
       <div class="right">
         <input type="submit" id="publish" value="Publish" />

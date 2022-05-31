@@ -4,15 +4,14 @@ const router = express.Router()
 const Post = require('../models/post')
 
 router.post('/', async (req, res) => {
+  console.log('posts.js - post - req.body -> ', req.body)
   try {
-    // console.log('posts.js - post - req.body -> ', req.body)
     const post = await Post.create(req.body)
 
-    // console.log('posts.js - post - post -> ', post)
+    console.log('posts.js - post - post -> ', post)
     res.status(201).send(JSON.stringify(post))
   } catch (err) {
-    // 406 - Not Acceptable
-    res.status(406).json({ err })
+    res.status(400).json({ err })
   }
 })
 
