@@ -19,8 +19,9 @@ router.get('/:id', async (req, res) => {
   try {
     console.log('posts.js - get /:id - req.params.id -> ', req.params.id)
     const retrievedPost = await Post.getPostByLinkId(req.params.id)
-    if (!retrievedPost) throw new Error()
+    // if (!retrievedPost) throw new Error()
     const postToSend = JSON.stringify(retrievedPost)
+    console.log('****** posts.js - get /:id - postToSend ->', postToSend)
     res.send(postToSend)
   } catch (err) {
     res.status(404).send({ error: 'Post not Found.' })

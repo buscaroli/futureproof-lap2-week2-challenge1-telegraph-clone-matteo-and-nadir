@@ -16,6 +16,15 @@ function addPost(title, username, story) {
     },
   }).then((data) => {
     console.log('sent data')
-    return data
   })
+}
+
+function getPost(linkId) {
+  console.log(`linkId is ${linkId.length} chars long`)
+  fetch(`http://localhost:3000/posts/${linkId}`)
+    .then((response) => response.json())
+    .then((data) => JSON.parse(data))
+    .then((post) => {
+      console.log('*********** ', post)
+    })
 }
