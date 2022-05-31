@@ -8,21 +8,27 @@ class Post {
     this.name = name
     this.story = story
     this.link = link
+    this.enteredAt = ''
   }
+
+  // get stringDate() {
+  //   return this.enteredAt.toString().slice(0, 24)
+  // }
 
   static create({ title, username, story }) {
     return new Promise(async (resolve, reject) => {
       try {
-        let link = uuidv4().toString()
+        const link = uuidv4().toString()
         // console.log(
         //   `post.js create -> title: ${title}, username: ${username}, story: ${story}, link: ${link} `
         // )
-        let newPostData = await db.query(
-          `INSERT INTO posts (title, username, story, link) VALUES ($1, $2, $3, $4) RETURNING *;`,
-          [title, username, story, link]
+        const now = new Date().toString().slice(0, 16).trim()
+        const newPostData = await db.query(
+          `INSERT INTO posts (title, username, story, link, enteredat) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
+          [title, username, story, link, now]
         )
         // console.log('post.js - create - newPostData -> ', newPostData)
-        let newPost = new Post(newPostData.rows[0])
+        const newPost = new Post(newPostData.rows[0])
         // console.log('post.js - create - newPost -> ', newPost)
         resolve(newPost)
       } catch (err) {
