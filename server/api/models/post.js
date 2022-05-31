@@ -19,9 +19,9 @@ class Post {
     return new Promise(async (resolve, reject) => {
       try {
         const link = uuidv4().toString()
-        // console.log(
-        //   `post.js create -> title: ${title}, username: ${username}, story: ${story}, link: ${link} `
-        // )
+        console.log(
+          `post.js create -> title: ${title}, username: ${username}, story: ${story}, link: ${link} `
+        )
         const now = new Date().toString().slice(0, 16).trim()
         const newPostData = await db.query(
           `INSERT INTO posts (title, username, story, link, enteredat) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,

@@ -1,11 +1,17 @@
-const app = require('./app')
-
 const form = document.querySelector('form')
 const title = document.querySelector('#title')
-const name = document.querySelector('#name')
+const username = document.querySelector('#name')
 const story = document.querySelector('#story')
 const submitBtn = document.querySelector('#publish')
+const date = document.querySelector('#date')
 
 const pathArray = window.location.pathname.split('/')
-const linkId = pathArray[-1]
+const linkId = pathArray[pathArray.length - 1]
 console.log(linkId)
+
+if (linkId !== '') window.onload = getPost
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const dataToDisplay = addPost(title, username, story)
+})
