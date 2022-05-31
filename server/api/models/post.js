@@ -2,33 +2,34 @@ const db = require('../dbConfig')
 const { v4: uuidv4 } = require('uuid')
 
 class Post {
-  constructor({ id, title, username, story, link }) {
+  constructor({ id, title, username, story, link, enteredat }) {
     this.id = id
     this.title = title
     this.username = username
     this.story = story
     this.link = link
-    this.enteredAt = ''
+    this.enteredat = enteredat
   }
-
-  // get stringDate() {
-  //   return this.enteredAt.toString().slice(0, 24)
-  // }
 
   static create({ title, username, story }) {
     return new Promise(async (resolve, reject) => {
       try {
         const link = uuidv4().toString()
-        console.log(
-          `post.js create -> title: ${title}, username: ${username}, story: ${story}, link: ${link} `
-        )
-        const now = new Date().toString().slice(0, 16).trim()
+        // console.log(
+        //   `post.js create -> title: ${title}, username: ${username}, story: ${story}, link: ${link}`
+        // )
+
+        const now = new Date()
+        const nowString = now.toString().slice(0, 16).trim()
+
         const newPostData = await db.query(
           `INSERT INTO posts (title, username, story, link, enteredat) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
-          [title, username, story, link, now]
+          [title, username, story, link, nowString]
         )
         // console.log('post.js - create - newPostData -> ', newPostData)
+        // console.log('AAAAAAAAAA - ', newPostData.rows[0])
         const newPost = new Post(newPostData.rows[0])
+
         // console.log('post.js - create - newPost -> ', newPost)
         resolve(newPost)
       } catch (err) {
@@ -49,7 +50,7 @@ class Post {
         console.log('post.js - getPostByLinkId - postToSend -> ', postToSend)
         resolve(postToSend)
       } catch (err) {
-        reject('Post not found.')
+        reject({ error: 'Post not found.' })
       }
     })
   }
