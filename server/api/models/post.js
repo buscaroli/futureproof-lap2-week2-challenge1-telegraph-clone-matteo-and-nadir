@@ -2,10 +2,10 @@ const db = require('../dbConfig')
 const { v4: uuidv4 } = require('uuid')
 
 class Post {
-  constructor({ id, title, name, story, link }) {
+  constructor({ id, title, username, story, link }) {
     this.id = id
     this.title = title
-    this.name = name
+    this.username = username
     this.story = story
     this.link = link
     this.enteredAt = ''
