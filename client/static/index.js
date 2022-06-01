@@ -26,7 +26,14 @@ function onLoad(e) {
 }
 
 function checkDataIsValid() {
-  if (titleEl.value !== '' && usernameEl.value !== '' && storyEl.value !== '')
+  if (
+    titleEl.value !== '' &&
+    usernameEl.value !== '' &&
+    storyEl.value !== '' &&
+    titleEl.value.length <= 100 &&
+    usernameEl.value.length <= 50 &&
+    storyEl.value.length <= 2000
+  )
     return true
   return false
 }
@@ -52,20 +59,18 @@ function addPost(title, username, story) {
       .then((response) => response.json())
       .then((data) => {
         // console.log('sent data, link is ', data.link)
-        console.log('data -> ', data)
-        // populateFields(post.title, post.username, post.story, post.link)
-        // window.location.href = `${window.location.protocol}//${window.location.host}/${data.link}`
-        // window.location.reload()
-        // populateFields(data)
+        // console.log('data -> ', data)
+
         window.location.href = window.location.href + '?' + data.link
-        console.log('protocol', window.location.protocol)
-        console.log('hostname', window.location.hostname)
-        console.log('port', window.location.port)
-        console.log('href', window.location.href)
-        console.log('ffff', window.location.href + '?' + data.link)
+        // console.log('protocol', window.location.protocol)
+        // console.log('hostname', window.location.hostname)
+        // console.log('port', window.location.port)
+        // console.log('href', window.location.href)
+        // console.log('ffff', window.location.href + '?' + data.link)
       })
   } else {
-    alert('Please fill all fields!')
+    alert('Please fill all fields and make sure the data is not too long!')
+    populateFields({ title: '', username: '', story: '', enteredat: '' })
   }
 }
 
