@@ -15,9 +15,6 @@ class Post {
     return new Promise(async (resolve, reject) => {
       try {
         const link = uuidv4().toString()
-        // console.log(
-        //   `post.js create -> title: ${title}, username: ${username}, story: ${story}, link: ${link}`
-        // )
 
         const now = new Date()
         const nowString = now.toString().slice(0, 16).trim()
@@ -26,11 +23,9 @@ class Post {
           `INSERT INTO posts (title, username, story, link, enteredat) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
           [title, username, story, link, nowString]
         )
-        // console.log('post.js - create - newPostData -> ', newPostData)
-        // console.log('AAAAAAAAAA - ', newPostData.rows[0])
+
         const newPost = new Post(newPostData.rows[0])
 
-        // console.log('post.js - create - newPost -> ', newPost)
         resolve(newPost)
       } catch (err) {
         reject('Could not create the post.')
@@ -45,9 +40,8 @@ class Post {
           `SELECT * FROM posts WHERE link=($1);`,
           [link]
         )
-
         const postToSend = targetPost.rows[0]
-        console.log('post.js - getPostByLinkId - postToSend -> ', postToSend)
+
         resolve(postToSend)
       } catch (err) {
         reject({ error: 'Post not found.' })

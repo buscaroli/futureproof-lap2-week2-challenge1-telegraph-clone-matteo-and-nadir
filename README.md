@@ -66,3 +66,4 @@ If the user tries to enter data that doesn't conform to those rules an alert wil
 ## BUGS 🐛
 
 - If using Live Server or alternative servers the page might refresh incorrectly and the styling might not appear correctly
+- Tried to implement testing the server but couldn't figure out how to do it when usinf docker
